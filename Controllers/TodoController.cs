@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using TodoAPI.Context;
+using TodoAPI.Models;
 
 namespace TodoAPI.Controllers;
 
@@ -6,9 +8,18 @@ namespace TodoAPI.Controllers;
 [Route("/todos")]
 public class TodoController: ControllerBase {
 
-    [HttpGet]
-    public IActionResult Hello() {
-        return Ok(new {message="Hello!"});
+    private readonly TodoContext context;
+
+    public TodoController(TodoContext context)  {
+        this.context = context; 
+    }
+
+    [HttpPost]
+    public IActionResult Create(TodoModel todo) {
+        todo.Id = Guid.NewGuid();
+        context.Add(todo);
+        context.SaveChanges();
+        return Ok(todo);
     }
     
 
