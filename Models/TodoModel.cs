@@ -1,5 +1,3 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace TodoAPI.Models;
 
 public class TodoModel {
