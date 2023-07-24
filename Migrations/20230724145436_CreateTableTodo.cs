@@ -18,7 +18,7 @@ namespace TodoAPI.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: false),
                     Description = table.Column<string>(type: "text", nullable: false),
-                    Completed = table.Column<bool>(type: "boolean", nullable: false)
+                    Completed = table.Column<bool>(type: "boolean", nullable: true)
                 },
                 constraints: table =>
                 {
