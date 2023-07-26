@@ -28,9 +28,15 @@ API para gerenciar tarefas (CRUD).
 ## Como Executar
 
 - Clonar repositório git
-- Construir o projeto:
+- Construir o projeto
+- Criar um banco de dados Postgres com nome `todo_db`
+- Executar as migrations:
 ```
 $ make migrations-add
+
+```
+
+```
 $ make migrations-update
 ```
 - Executar a aplicação:
@@ -48,7 +54,9 @@ Para fazer as requisições HTTP abaixo, foi utilizada a ferramenta [httpie](htt
 - Criar Tarefa 
 ```
 $ http POST :5141/todos title="Todo 1" description="Desc Todo 1"
-
+```
+- Response body
+```
 {
     "message": "todo has been created successfully",
     "todo": {
@@ -62,6 +70,9 @@ $ http POST :5141/todos title="Todo 1" description="Desc Todo 1"
 - Listar Tarefas
 ```
 $ http GET :5141/todos
+```
+- Response body
+```
 
 {
     "message": "todos has been listed successfully",
@@ -79,6 +90,9 @@ $ http GET :5141/todos
 - Atualizar Tarefa
 ```
 $ http PUT :5141/todos/<id> title="Todo 1 Up" description="Desc Todo 1 Up"
+```
+- Response body
+```
 
 {
     "message": "todo has been updated successfully",
@@ -94,6 +108,14 @@ $ http PUT :5141/todos/<id> title="Todo 1 Up" description="Desc Todo 1 Up"
 - Remover Tarefa
 ```
 http DELETE :5141/todos/<id>
-
-[ ]
+```
+```
+{
+    "message": "todo has been deleted successfully",
+    "todo": {
+        "completed": false,
+        "description": "Desc Todo 1 Up",
+        "title": "Todo 1 Up"
+    }
+}
 ```
